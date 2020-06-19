@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.IO.IsolatedStorage;
 using System.Text;
 
 namespace Advent_2019
@@ -95,22 +96,67 @@ namespace Advent_2019
             }
         }
 
-        private string mult(int pos)
+        private string storeItemInMemory(int pos, string value)
         {
-
-            int memAtPos = (int)memory[pos];
-            int firstArg = (int)memory[pos + 1];
-
-            return firstArg.ToString();
-            
+            memory[pos] = value;
+            return memory[pos].ToString();
         }
 
-        private string add(int pos)
+        private int[] parseIntCode(int pos)
         {
-            int memAtPos = (int)memory[pos];
-            int firstArg = (int)memory[pos + 1];
+            string baseOpCode = memory[pos].ToString();
 
-            return firstArg.ToString();
+            if(baseOpCode.Length < 5)
+            {
+                var pad = "0000";
+                baseOpCode = pad + baseOpCode;
+                baseOpCode.Substring(baseOpCode.Length - 5);
+            }
+
+            string[] 
+
+
+            for (int i = 0; i < 5; i--)
+            {
+
+
+            }
+
+
+
+        }
+
+
+        private string mult(int[] numbersToUse)
+        {
+
+            int memAtPos = numbersToUse[0];
+            int firstArg = numbersToUse[1];
+            int secondtArg = numbersToUse[2];
+            int thirdArg = numbersToUse[3];
+
+            int finalVal = secondtArg * firstArg;
+
+            storeItemInMemory(thirdArg, finalVal.ToString());
+
+            return finalVal.ToString();
+  
+        }
+
+        private string add(int[] numbersToUse)
+        {
+
+            int memAtPos = numbersToUse[0];
+            int firstArg = numbersToUse[1];
+            int secondtArg = numbersToUse[2];
+            int thirdArg = numbersToUse[3];
+
+            int finalVal = secondtArg + firstArg;
+
+            storeItemInMemory(thirdArg, finalVal.ToString());
+
+            return finalVal.ToString();
+
         }
     }
 }
